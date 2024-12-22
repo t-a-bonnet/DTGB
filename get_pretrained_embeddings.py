@@ -7,7 +7,6 @@ from transformers import AutoTokenizer, AutoConfig, AutoModel
 if __name__ == "__main__":
     precision = 8
     batch_size = 1000
-    data_set_name = 'Amazon_movies'
     pretrained_model_name = 'bert-base-uncased'
 
     # Prepare PLM modle and tokenizers
@@ -17,8 +16,8 @@ if __name__ == "__main__":
     PLM = AutoModel.from_pretrained(pretrained_model_name).cuda()
     print("PLM initialized")
 
-    # [ 'Amazon_movies', 'Enron', 'GDELT', 'Googlemap_CT', 'ICEWS1819', 'Stack_elec', 'Stack_english', 'Stack_ubuntu', 'Yelp']
-    for data_set_name in ['GDELT']:
+    for data_set_name in ['Amazon_movies', 'Enron', 'GDELT', 'Googlemap_CT', 'ICEWS1819', 'Stack_elec', 'Stack_english', 'Stack_ubuntu', 'Yelp']:
+        print(f"Processing dataset: {data_set_name}")
         print(data_set_name)
         edge_list = pd.read_csv(data_set_name + '/edge_list.csv')
         num_node = max(edge_list['u'].max(), edge_list['i'].max())
