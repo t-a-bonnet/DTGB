@@ -75,7 +75,7 @@ def get_link_prediction_data(dataset_name: str, val_ratio: float, test_ratio: fl
             full_data, train_data, val_data, test_data, new_node_val_data, new_node_test_data, (Data object)
     """
     # Load data and train val test split
-    graph_df = pd.read_csv('../DyLink_Datasets/{}/edge_list.csv'.format(dataset_name, dataset_name))
+    graph_df = pd.read_csv('/content/onedrive/DyLink_Datasets/{}/edge_list.csv'.format(dataset_name, dataset_name))
     node_num = max(graph_df['u'].max(), graph_df['i'].max()) + 1
     rel_num = graph_df['r'].max() + 1
     if graph_df['label'].min() != 0:
@@ -87,8 +87,8 @@ def get_link_prediction_data(dataset_name: str, val_ratio: float, test_ratio: fl
     NODE_FEAT_DIM = EDGE_FEAT_DIM = 768
     if args.use_feature == 'Bert':
         print('get pretrained features')
-        edge_raw_features = np.load('../DyLink_Datasets/{}/r_feat.npy'.format(dataset_name, dataset_name))
-        node_raw_features = np.load('../DyLink_Datasets/{}/e_feat.npy'.format(dataset_name, dataset_name))
+        edge_raw_features = np.load('/content/onedrive/DyLink_Datasets/{}/r_feat.npy'.format(dataset_name, dataset_name))
+        node_raw_features = np.load('/content/onedrive/DyLink_Datasets/{}/e_feat.npy'.format(dataset_name, dataset_name))
         assert NODE_FEAT_DIM >= node_raw_features.shape[1], f'Node feature dimension in dataset {dataset_name} is bigger than {NODE_FEAT_DIM}!'
         assert EDGE_FEAT_DIM >= edge_raw_features.shape[1], f'Edge feature dimension in dataset {dataset_name} is bigger than {EDGE_FEAT_DIM}!'
         # padding the features of edges and nodes to the same dimension (172 for all the datasets)
@@ -212,7 +212,7 @@ def get_edge_classification_data(dataset_name: str, val_ratio: float, test_ratio
             full_data, train_data, val_data, test_data, new_node_val_data, new_node_test_data, (Data object)
     """
     # Load data and train val test split
-    graph_df = pd.read_csv('../DyLink_Datasets/{}/edge_list.csv'.format(dataset_name, dataset_name))
+    graph_df = pd.read_csv('/content/onedrive/DyLink_Datasets/{}/edge_list.csv'.format(dataset_name, dataset_name))
     node_num = max(graph_df['u'].max(), graph_df['i'].max()) + 1
     rel_num = graph_df['r'].max()
     if graph_df['label'].min() != 0:
@@ -225,8 +225,8 @@ def get_edge_classification_data(dataset_name: str, val_ratio: float, test_ratio
     NODE_FEAT_DIM = EDGE_FEAT_DIM = 768
     if args.use_feature == 'Bert':
         print('get pretrained features')
-        edge_raw_features = np.load('../DyLink_Datasets/{}/r_feat.npy'.format(dataset_name, dataset_name))
-        node_raw_features = np.load('../DyLink_Datasets/{}/e_feat.npy'.format(dataset_name, dataset_name))
+        edge_raw_features = np.load('/content/onedrive/DyLink_Datasets/{}/r_feat.npy'.format(dataset_name, dataset_name))
+        node_raw_features = np.load('/content/onedrive/DyLink_Datasets/{}/e_feat.npy'.format(dataset_name, dataset_name))
         if edge_raw_features.shape[0] >= rel_num:
             edge_raw_features = np.random.randn(rel_num, EDGE_FEAT_DIM)
         assert NODE_FEAT_DIM >= node_raw_features.shape[1], f'Node feature dimension in dataset {dataset_name} is bigger than {NODE_FEAT_DIM}!'
