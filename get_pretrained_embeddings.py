@@ -6,7 +6,7 @@ from transformers import AutoTokenizer, AutoConfig, AutoModel
 
 if __name__ == "__main__":
     precision = 8
-    batch_size = 1000
+    batch_size = 256
     pretrained_model_name = 'bert-base-uncased'
 
     # Prepare PLM modle and tokenizers
